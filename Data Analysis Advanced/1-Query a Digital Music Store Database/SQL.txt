@@ -1,0 +1,36 @@
+1- Question1: What is the full name of the top 10 customers? 
+
+
+SELECT( FirstName|| " "||LastName)as FULL_Name ,MAX(total )as Total_Spent 
+FROM Customer C JOIN Invoice I
+ON C.CustomerId = I.CustomerId
+GROUP BY  FULL_Name
+ORDER BY total DESC
+LIMIT 10
+
+
+2-Question2: what are the most famous genres of music ?
+
+
+SELECT G.Name,count(T.GenreId) as Genre_Number
+FROM Genre G JOIN Track T
+ON G.GenreId = T.GenreId
+GROUP BY G.Name
+
+3- Question3: what are the names of the top 10 singers who made albums?
+
+
+SELECT AR.Name , count(AL.ArtistId) AS Album_NUMBER
+FROM Artist AR JOIN Album AL
+ON AR.ArtistId = AL.ArtistId
+GROUP BY AR.Name
+ORDER BY Album_NUMBER DESC
+LIMIT 10
+
+
+4- Question4:what is the number of each mediatype format used?
+
+SELECT M.Name , count(T.MediaTypeId)
+FROM MediaType M JOIN Track T
+ON M.MediaTypeId = T.MediaTypeId
+GROUP BY M.Name
